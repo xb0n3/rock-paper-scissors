@@ -1,10 +1,13 @@
 const rock = 'Rock'
     , paper = 'Paper'
     , scissors = 'Scissors';
-let computerSelection = ''
-  , playerSelection = '';
+let playerSelection = ''
+  , computerSelection = ''
+  , playerScore = 0
+  , computerScore = 0
+  , roundCount = 1;
 
-console.log(playRound(playerPlay(), computerPlay()));
+console.log(game());
 
 function playerPlay() {
   playerSelection = prompt('Pick one: rock, paper or scissors').toLowerCase();
@@ -44,29 +47,50 @@ function playRound(playerSelection, computerSelection) {
   switch(true) {
     case (playerSelection == rock &&
           computerSelection == paper):
+      ++computerScore;
+      ++roundCount;
       return lossMessage;
       break;
     case (playerSelection == rock &&
           computerSelection == scissors):
+      ++playerScore;
+      ++roundCount;
       return winMessage;
       break;
     case (playerSelection == paper &&
           computerSelection == scissors):
+      ++computerScore;
+      ++roundCount;
       return lossMessage;
       break;
     case (playerSelection == paper &&
           computerSelection == rock):
+      ++playerScore;
+      ++roundCount;
       return winMessage;
       break;
     case (playerSelection == scissors &&
           computerSelection == rock):
+      ++computerScore;
+      ++roundCount;
       return lossMessage;
       break;
     case (playerSelection == scissors &&
           computerSelection == paper):
+      ++playerScore;
+      ++roundCount;
       return winMessage;
       break;
     case (playerSelection == computerSelection):
       return drawMessage;
   }
+};
+
+function game() {
+  console.log(playRound(playerPlay(), computerPlay()));
+  console.info(`The score is: ${playerScore} : ${computerScore} (player : computer)`);
+  while (playerScore != 3 && computerScore != 3 && roundCount < 6) {
+    game();
+  }
+  console.info(`Game over!`);
 };
