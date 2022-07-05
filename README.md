@@ -1,0 +1,2 @@
+# Project: Rock Paper Scissors
+This is lesson 7 in the JavaScript Basics chapter of The Odin Project (TOP). In this project I will create a simple implementation of “rock paper scissors”, built with JavaScript.
