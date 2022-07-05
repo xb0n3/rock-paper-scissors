@@ -4,8 +4,7 @@ const rock = 'Rock'
 let playerSelection = ''
   , computerSelection = ''
   , playerScore = 0
-  , computerScore = 0
-  , roundCount = 1;
+  , computerScore = 0;
 
 console.log(game());
 
@@ -48,37 +47,31 @@ function playRound(playerSelection, computerSelection) {
     case (playerSelection == rock &&
           computerSelection == paper):
       ++computerScore;
-      ++roundCount;
       return lossMessage;
       break;
     case (playerSelection == rock &&
           computerSelection == scissors):
       ++playerScore;
-      ++roundCount;
       return winMessage;
       break;
     case (playerSelection == paper &&
           computerSelection == scissors):
       ++computerScore;
-      ++roundCount;
       return lossMessage;
       break;
     case (playerSelection == paper &&
           computerSelection == rock):
       ++playerScore;
-      ++roundCount;
       return winMessage;
       break;
     case (playerSelection == scissors &&
           computerSelection == rock):
       ++computerScore;
-      ++roundCount;
       return lossMessage;
       break;
     case (playerSelection == scissors &&
           computerSelection == paper):
       ++playerScore;
-      ++roundCount;
       return winMessage;
       break;
     case (playerSelection == computerSelection):
@@ -89,8 +82,15 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   console.log(playRound(playerPlay(), computerPlay()));
   console.info(`The score is: ${playerScore} : ${computerScore} (player : computer)`);
-  while (playerScore != 3 && computerScore != 3 && roundCount < 6) {
+  while (playerScore != 3 && computerScore != 3) {
     game();
   }
-  console.info(`Game over!`);
+  switch(true) {
+    case !(playerScore != 3):
+      return `Congratulations, you've won!`;
+      break;
+    case !(computerScore != 3):
+      return `Game over! You've lost.`;
+      break;
+  }
 };
