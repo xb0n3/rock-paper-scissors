@@ -4,7 +4,7 @@ const rock = 'Rock'
 let computerSelection = ''
   , playerSelection = '';
 
-console.log(rockPaperScissors(playerPlay(), computerPlay()));
+console.log(playRound(playerPlay(), computerPlay()));
 
 function playerPlay() {
   playerSelection = prompt('Pick one: rock, paper or scissors').toLowerCase();
@@ -37,9 +37,10 @@ function computerPlay() {
   }
 };
 
-function rockPaperScissors(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   const winMessage = `You win! ${playerSelection} beats ${computerSelection}`
-    , lossMessage = `You lost! ${computerSelection} beats ${playerSelection}`;
+    , lossMessage = `You lost! ${computerSelection} beats ${playerSelection}`
+    , drawMessage = `It's a draw! Try again`
   switch(true) {
     case (playerSelection == rock &&
           computerSelection == paper):
@@ -61,9 +62,11 @@ function rockPaperScissors(playerSelection, computerSelection) {
           computerSelection == rock):
       return lossMessage;
       break;
-  case (playerSelection == scissors &&
-        computerSelection == paper):
+    case (playerSelection == scissors &&
+          computerSelection == paper):
       return winMessage;
       break;
+    case (playerSelection == computerSelection):
+      return drawMessage;
   }
 };
